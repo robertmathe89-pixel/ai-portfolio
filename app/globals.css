@@ -6,6 +6,17 @@
   --primary: #6366f1;
   --secondary: #8b5cf6;
   --accent: #06b6d4;
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+.light {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -22,14 +33,25 @@ body {
 }
 
 body {
-  background: #0f172a;
+  background: var(--bg-primary);
   color: #ffffff;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.light body {
+  color: #1e293b;
 }
 
 .glass {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--glass-bg);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--glass-border);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.light .glass {
+  backdrop-filter: blur(20px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 .glass-card {
@@ -37,6 +59,13 @@ body {
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 24px;
+  transition: all 0.3s ease;
+}
+
+.light .glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%);
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .gradient-text {
@@ -46,11 +75,32 @@ body {
   background-clip: text;
 }
 
+.light .gradient-text {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #0891b2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .hero-gradient {
   background: radial-gradient(ellipse at top, rgba(99, 102, 241, 0.3) 0%, transparent 50%),
               radial-gradient(ellipse at bottom right, rgba(139, 92, 246, 0.2) 0%, transparent 50%),
               radial-gradient(ellipse at bottom left, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
-              #0f172a;
+              var(--bg-primary);
+}
+
+.light .hero-gradient {
+  background: radial-gradient(ellipse at top, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+              radial-gradient(ellipse at bottom right, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+              radial-gradient(ellipse at bottom left, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+              #f8fafc;
+}
+
+.hero-gradient-light {
+  background: radial-gradient(ellipse at top, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+              radial-gradient(ellipse at bottom right, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+              radial-gradient(ellipse at bottom left, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+              #f8fafc;
 }
 
 .float-animation {
@@ -99,4 +149,95 @@ body {
 ::-webkit-scrollbar-thumb {
   background: rgba(99, 102, 241, 0.5);
   border-radius: 4px;
+}
+
+/* Card hover lift effect */
+.card-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-8px);
+}
+
+.light .card-lift:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Text utilities for light mode */
+.text-gray-300.light-mode-text {
+  color: #475569;
+}
+
+.text-gray-400.light-mode-text {
+  color: #64748b;
+}
+
+.text-gray-500.light-mode-text {
+  color: #718096;
+}
+
+/* Section backgrounds */
+.bg-dark\/50 {
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.light .bg-dark\/50 {
+  background: rgba(241, 245, 249, 0.8);
+}
+
+/* FAQ accordion animation */
+.accordion-content {
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+/* Smooth section transitions */
+section {
+  transition: background 0.3s ease;
+}
+
+/* Button shine effect */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  transform: rotate(45deg);
+  transition: all 0.5s ease;
+}
+
+.btn-shine:hover::after {
+  left: 100%;
+}
+
+/* Stagger animations */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .glass-card {
+    border-radius: 16px;
+  }
+  
+  section {
+    padding: 4rem 1.5rem;
+  }
 }
