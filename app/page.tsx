@@ -28,25 +28,31 @@ const services = [
 
 const caseStudies = [
   {
-    title: 'E-Commerce AI Assistant',
-    description: 'Reduced customer support response time by 85% with an AI-powered chatbot.',
-    metric: '85%',
-    metricLabel: 'Faster Response',
-    tags: ['Chatbot', 'NLP', 'E-Commerce'],
+    title: 'AI Content Generator',
+    description: 'Generate blog posts and social media content from any topic using AI. Try the live demo!',
+    metric: '10x',
+    metricLabel: 'Faster Creation',
+    tags: ['Content', 'AI', 'Blog'],
+    link: '/demo/content-generator',
+    demo: true,
   },
   {
-    title: 'Data Analytics Platform',
-    description: 'Automated reporting pipeline saving 20+ hours weekly on manual data processing.',
-    metric: '20hrs',
-    metricLabel: 'Saved Weekly',
-    tags: ['Analytics', 'Automation', 'Dashboard'],
+    title: 'Lead Qualifier Chatbot',
+    description: 'AI-powered chatbot that qualifies leads through natural conversation. Try it live!',
+    metric: '3x',
+    metricLabel: 'More Leads',
+    tags: ['Chatbot', 'Qualification', 'Sales'],
+    link: '/demo/lead-qualifier',
+    demo: true,
   },
   {
-    title: 'Sales Prediction Engine',
-    description: 'ML model predicting sales trends with 94% accuracy for better inventory management.',
-    metric: '94%',
-    metricLabel: 'Accuracy',
-    tags: ['ML', 'Forecasting', 'Sales'],
+    title: 'Business Process Automation',
+    description: 'Discover automation opportunities and calculate time savings. Try the demo!',
+    metric: '9.5hrs',
+    metricLabel: 'Saved Daily',
+    tags: ['Automation', 'Workflow', 'Efficiency'],
+    link: '/demo/automation',
+    demo: true,
   },
 ]
 
@@ -366,13 +372,22 @@ export default function Home() {
                 <div className="text-sm text-gray-500 mb-6">{study.metricLabel}</div>
                 <h3 className="text-xl font-semibold mb-4">{study.title}</h3>
                 <p className="text-gray-400 mb-6">{study.description}</p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mb-4">
                   {study.tags.map((tag) => (
                     <span key={tag} className="px-3 py-1 rounded-full glass text-sm text-gray-300">
                       {tag}
                     </span>
                   ))}
                 </div>
+                {study.link && (
+                  <a
+                    href={study.link}
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-primary to-secondary text-white font-medium hover:opacity-90 transition-opacity"
+                  >
+                    {study.demo ? 'Try Demo' : 'View Project'}
+                    <FiArrowRight className="w-4 h-4" />
+                  </a>
+                )}
               </motion.div>
             ))}
           </div>
